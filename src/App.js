@@ -20,7 +20,7 @@ import { VideoContext } from "./context/VideoContext";
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 import axios from 'axios';
-import {KEY} from "./localKey"
+import {Key} from 'aws-amplify'
 
 
 function App() {      
@@ -36,7 +36,7 @@ function App() {
 
   const fetchVideos = async (searchTerm) => {
     try {
-      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}&part=snippet&type=video&maxResults=5`);
+      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${Key}&part=snippet&type=video&maxResults=5`);
       console.log(response.data)  
       setVideos(response.data.items);
       navigate('/search')
@@ -47,7 +47,7 @@ function App() {
 
   const fetchDefaultVideos = async () => {
     try {
-      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=transformers&key=${KEY}&part=snippet&type=video&maxResults=5`);
+      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=transformers&key=${Key}&part=snippet&type=video&maxResults=5`);
       setDefaultVideos(response.data.items);
       console.log(defaultVideos)  
     } catch (error) {
