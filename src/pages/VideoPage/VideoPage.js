@@ -6,7 +6,6 @@ import useAuth from '../../hooks/useAuth';
 //Util Imports
 import axios from 'axios';
 import { URL_HOST } from '../../urlHost';
-import { KEY } from '../../localKey';
 
 const VideoPage = () => {
     const [user, token] = useAuth();
