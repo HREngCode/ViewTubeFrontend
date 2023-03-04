@@ -5,6 +5,7 @@ import useAuth from '../../hooks/useAuth';
 
 //Util Imports
 import axios from 'axios';
+import { URL_HOST } from '../../urlHost';
 import { KEY } from '../../localKey';
 
 const VideoPage = () => {
@@ -18,7 +19,7 @@ const VideoPage = () => {
         fetchRelatedVideos();
         const fetchCommentsByVideoId = async () => {
             try {
-                let response = await axios.get(`http://127.0.0.1:8000/api/comments/number/${vidId}/`); { 
+                let response = await axios.get(`${URL_HOST}/api/comments/number/${vidId}/`); { 
                 }
                 setComments(response.data);
               } catch (error) {
@@ -34,18 +35,30 @@ const VideoPage = () => {
 
     const fetchRelatedVideos = async () => {
         try {
-          let response2 = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${vidId}&type=video&key=${KEY}&part=snippet&type=video&maxResults=5`);
-          setRelatedVideos(response2.data.items);
-          console.log(relatedVideos)  
-        } catch (error) {
-          console.log(error.response.data)
+            let response2 = await axios.get(`https://www.googleapis.com/youtube/v3/search`,
+                {
+                    params: {
+                        relatedToVideoId: vidId,
+                        key: process.env.REACT_APP_YT_API_KEY, 
+                        part: "snippet", 
+                        type: "video",
+                        maxResults: 5,
+                    },
+                }
+            );
+            setRelatedVideos(response2.data.items);
+            console.log(relatedVideos)  
+            } catch (error) 
+            {
+            console.log(error.response.data)
+            }
         }
       };
     
       const addNewComment = async (newComment) => {
         try 
         {
-            let response3 = await axios.post('http://127.0.0.1:8000/api/comments/changes/', newComment, {
+            let response3 = await axios.post(`${URL_HOST}/api/comments/changes/`, newComment, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
