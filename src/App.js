@@ -61,7 +61,7 @@ function App() {
       let response = await axios.get(`https://www.googleapis.com/youtube/v3/search`,
       {
         params: {
-          q: searchTerm,
+          q: "transformers",
           key: process.env.REACT_APP_YT_API_KEY, 
           part: "snippet", 
           type: "video",

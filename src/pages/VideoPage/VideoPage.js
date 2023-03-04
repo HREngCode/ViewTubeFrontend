@@ -52,7 +52,6 @@ const VideoPage = () => {
             {
             console.log(error.response.data)
             }
-        }
       };
     
       const addNewComment = async (newComment) => {
