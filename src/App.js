@@ -58,7 +58,7 @@ function App() {
 
   const fetchDefaultVideos = async () => {
     try {
-      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search`
+      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search`,
       {
         params: {
           q: searchTerm,
