@@ -41,7 +41,7 @@ function App() {
       {
         params: {
           q: searchTerm,
-          key: process.env.REACT_APP_TY_API_KEY, 
+          key: process.env.REACT_APP_YT_API_KEY, 
           part: "snippet", 
           type: "video",
           maxResults: 5,
@@ -62,7 +62,7 @@ function App() {
       {
         params: {
           q: searchTerm,
-          key: process.env.REACT_APP_TY_API_KEY, 
+          key: process.env.REACT_APP_YT_API_KEY, 
           part: "snippet", 
           type: "video",
           maxResults: 5,
